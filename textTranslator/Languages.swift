@@ -170,6 +170,10 @@ enum Languages: String, CustomStringConvertible{
     case Chineset = "zh-Hant"
     case Zulu = "zu"
     
+    
+    static var count:Int{return self.array.count}
+    static var array: Array<Languages> = [Languages.Afar ,Languages.Abkhazian ,Languages.Afrikaans ,Languages.Akan ,Languages.Amharic ,Languages.Arabic ,Languages.Assamese ,Languages.Aymara ,Languages.Azerbaijani ,Languages.Bashkir ,Languages.Belarusian ,Languages.Bulgarian ,Languages.Bihari ,Languages.Bislama ,Languages.Bengali ,Languages.Tibetan ,Languages.Breton ,Languages.Bosnian ,Languages.Catalan ,Languages.Cebuano ,Languages.Cherokee ,Languages.Corsican ,Languages.Seselwa ,Languages.Czech ,Languages.Welsh ,Languages.Danish ,Languages.German ,Languages.Dhivehi ,Languages.Dzongkha ,Languages.Greek ,Languages.English ,Languages.Esperanto ,Languages.Spanish ,Languages.Estonian ,Languages.Basque ,Languages.Persian ,Languages.Finnish ,Languages.Fijian ,Languages.Faroese ,Languages.French ,Languages.Frisian ,Languages.Irish ,Languages.ScotsGaelic ,Languages.Galician ,Languages.Guarani ,Languages.Gujarati ,Languages.Manx ,Languages.Hausa ,Languages.Hawaiian ,Languages.Hindi ,Languages.Hmong ,Languages.Croatian ,Languages.HaitianCreole ,Languages.Hungarian ,Languages.Armenian ,Languages.Interlingua ,Languages.Indonesian ,Languages.Interlingue ,Languages.Igbo ,Languages.Inupiak ,Languages.Icelandic ,Languages.Italian ,Languages.Inuktitut ,Languages.Hebrew ,Languages.Japanese ,Languages.Javanese ,Languages.Georgian ,Languages.Khasi ,Languages.Kazakh ,Languages.Greenlandic ,Languages.Khmer ,Languages.Kannada ,Languages.Korean ,Languages.Kashmiri ,Languages.Kurdish ,Languages.Kyrgyz ,Languages.Latin ,Languages.Luxembourgish ,Languages.Ganda ,Languages.Limbu ,Languages.Lingala ,Languages.Laothian ,Languages.Lithuanian ,Languages.Latvian ,Languages.MauritianCreole ,Languages.Malagasy ,Languages.Maori ,Languages.Macedonian ,Languages.Malayalam ,Languages.Mongolian ,Languages.Marathi ,Languages.Malay ,Languages.Maltese ,Languages.Burmese ,Languages.Nauru ,Languages.Nepali ,Languages.Dutch ,Languages.Norwegian ,Languages.Ndebele ,Languages.Pedi ,Languages.Nyanja ,Languages.Occitan ,Languages.Oromo ,Languages.Oriya ,Languages.Punjabi ,Languages.Polish ,Languages.Pashto ,Languages.Portuguese ,Languages.Quechua ,Languages.RhaetoRomance ,Languages.Rundi ,Languages.Romanian ,Languages.Russian ,Languages.Kinyarwanda ,Languages.Sanskrit ,Languages.Scots ,Languages.Sindhi ,Languages.Sango ,Languages.Sinhalese ,Languages.Slovak ,Languages.Slovenian ,Languages.Samoan ,Languages.Shona ,Languages.Somali ,Languages.Albanian ,Languages.Serbian ,Languages.Siswant ,Languages.Sesotho ,Languages.Sundanese ,Languages.Swedish ,Languages.Swahili ,Languages.Syriac ,Languages.Tamil ,Languages.Telugu ,Languages.Tajik ,Languages.Thai ,Languages.Tigrinya ,Languages.Turkmen ,Languages.Tagalog ,Languages.Tswana ,Languages.Tonga ,Languages.Turkish ,Languages.Tsonga ,Languages.Tatar ,Languages.Uighur ,Languages.Ukrainian ,Languages.Urdu ,Languages.Uzbek ,Languages.Venda ,Languages.Vietnamese ,Languages.Volapuk ,Languages.WarayPhilippines ,Languages.Wolof ,Languages.Xhosa ,Languages.Yiddish ,Languages.Yoruba ,Languages.Zhuang ,Languages.Chinese ,Languages.Chineset ,Languages.Zulu]
+    
     var description:String{
         switch self{
         case .Afar: return "Afar"
@@ -332,7 +336,6 @@ enum Languages: String, CustomStringConvertible{
         case .Chinese: return "Chinese"
         case .Chineset: return "Chineset"
         case .Zulu: return "Zulu"
-
         }
     }
 }

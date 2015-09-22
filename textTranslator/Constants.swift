@@ -15,4 +15,5 @@ class Constants: NSObject {
     
     static var translateURLGET = "http://api.mymemory.translated.net/get"
 
+    static var autoCompletionURL = "http://suggestqueries.google.com/complete/search"
 }

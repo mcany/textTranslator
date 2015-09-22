@@ -8,19 +8,50 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, HTTPRequestHandler {
+class ViewController: UIViewController {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var translationLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
-    var languageDetector: LanguageDetector!
+    @IBOutlet var languagePickerView: UIPickerView!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var autocompleteTableView: UITableView!
+    //let autocompleteTableView = UITableView(frame: CGRectMake(0,80,320,120), style: UITableViewStyle.Plain)
+
+    var httpRequestController: HTTPRequestController!
+    let pickerData = Languages.array
+    var targetLanguage:String = "en"
+    var similarWordsList = [String]()
+    var suggestedWord = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.textField.backgroundColor = UIColor.whiteColor()
+        self.httpRequestController = HTTPRequestController()
+        self.httpRequestController.handler = self
+        self.languagePickerView.reloadAllComponents()
         
-        self.languageDetector = LanguageDetector()
-        self.languageDetector.handler = self
+        //start with english
+        self.languagePickerView.selectRow(30, inComponent: 0, animated: false)
+        self.similarWordsList = [String]()
+        
+        //halft transparent gradient background
+        let view: UIView = self.view
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.opacity = 0.5
+        gradient.colors = [UIColor.whiteColor().CGColor, UIColor.blackColor().CGColor]
+        view.layer.insertSublayer(gradient, atIndex: 0)
+        
+        //auto complete table view
+        self.autocompleteTableView.hidden = true
+
+        //let constraint = NSLayoutConstraint(item: self.autocompleteTableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.textField, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 100)
+        //self.autocompleteTableView.addConstraint(constraint)
+        //self.view.addSubview(self.autocompleteTableView)
+
+        //self.view.insertSubview(self.autocompleteTableView, belowSubview: self.textField)
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,59 +59,8 @@ class ViewController: UIViewController, UITextFieldDelegate, HTTPRequestHandler 
         // Dispose of any resources that can be recreated.
     }
     
-    func HTTPRequestReceived(URL: String, JSONData: AnyObject) {
-        let parser = Parser(JSONData: JSONData)
-        if(URL == Constants.detectLanguageURL)
-        {
-            let detections = parser.getDetections()
-            print(detections)
-            var text = ""
-            for detection in detections
-            {
-                text += detection["language"].description + "\n"
-            }
-            if(detections.count > 0)
-            {
-                let language = Languages(rawValue: detections[0]["language"].description)
-                //print(language?.debugDescription)
-                self.languageLabel.text = language?.description
-                self.languageDetector.translate(self.textField.text!, sourceLanguage: detections[0]["language"].description, targetLanguage: "en")
-            }
-            else
-            {
-                self.languageLabel.text = "Language"
-                self.translationLabel.text = "Translation"
-            }
-        }
-        else if (URL == Constants.translateURLGET )
-        {
-            let responses = parser.getResponses()
-            if(responses != nil && responses!.count > 0 )
-            {
-                self.translationLabel.text = responses![0]["translation"].description
-            }
-            else
-            {
-                self.translationLabel.text = "Translation"
-            }
-        }
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        if(textField == self.textField)
-        {
-            self.languageDetector.detectLanguage(self.textField.text!)
-        }
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
-        textField.resignFirstResponder()
-        
-        return true
-    }
+    override func shouldAutorotate() -> Bool {
+        return false
+    }    
 }
 

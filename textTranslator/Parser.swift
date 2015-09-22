@@ -26,7 +26,7 @@ class Parser: NSObject {
     }
     
     
-    func getResponses() -> [JSON]?
+    func getMatches() -> [JSON]?
     {
         return json["matches"].array
     }

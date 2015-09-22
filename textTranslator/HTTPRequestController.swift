@@ -1,5 +1,5 @@
 //
-//  LanguageDetector.swift
+//  HTTPRequestController.swift
 //  textTranslator
 //
 //  Created by Mertcan Yigin on 9/21/15.
@@ -15,7 +15,7 @@ protocol HTTPRequestHandler
     func HTTPRequestReceived(URL:String, JSONData:AnyObject)
 }
 
-class LanguageDetector {
+class HTTPRequestController {
     var handler: HTTPRequestHandler!
     
     func detectLanguage(text: String)
@@ -33,7 +33,7 @@ class LanguageDetector {
     func translate(textToTranslate: String, sourceLanguage: String, targetLanguage:String)
     {
         let URL = Constants.translateURLGET
-
+        
         let request = self.requestGET(URL, parameters: [ "q": textToTranslate, "langpair": sourceLanguage+"|"+targetLanguage ])
         
         //Alamofire.request(.GET, Constants.translateURL, parameters: [ "q": textToTranslate, "langpair": sourceLanguage+"|"+targetLanguage ])
@@ -43,6 +43,19 @@ class LanguageDetector {
             self.completionHandler(URL,request: req, response: res, result: json.value!)
         }
         
+    }
+    
+    func autoCompleteSuggestion(text: String)
+    {
+        let URL = Constants.autoCompletionURL
+        let request = self.requestGET(URL,parameters: [ "q": text, "client": "firefox" ])
+        request.responseJSON { (req, res, json) in
+            NSLog("Success: \(URL)")
+            if(json.isSuccess)
+            {
+                self.completionHandler(URL,request: req, response: res, result: json.value!)
+            }
+        }
     }
     
     func requestGET(URL: String, parameters: [String : AnyObject]) -> Request

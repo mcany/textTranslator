@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjY-RA-ctX">
-                                <rect key="frame" x="279" y="150" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjY-RA-ctX">
+                                <rect key="frame" x="262" y="28" width="76" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -33,8 +35,35 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="3sq-DS-Xe1"/>
                                 </connections>
                             </textField>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emd-1s-brY">
+                                <rect key="frame" x="20" y="208" width="560" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="GSG-uh-767"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UeF-Oi-qnE"/>
+                                </connections>
+                            </pickerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HIl-8O-Cgc">
+                                <rect key="frame" x="20" y="432" width="560" height="160"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="bti-Ih-euH"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xB5-T8-hvZ"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U9j-gu-ahX">
+                                <rect key="frame" x="180" y="135" width="240" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Syu-6c-PTe"/>
+                                    <constraint firstAttribute="width" secondItem="U9j-gu-ahX" secondAttribute="height" multiplier="48:13" constant="62.769230769230774" id="n3F-lX-1hF"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="POe-f7-MGt"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Me0-1f-F7s"/>
+                                </connections>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egl-2f-80j">
-                                <rect key="frame" x="174" y="179" width="252" height="21"/>
+                                <rect key="frame" x="174" y="57" width="252" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,17 +71,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4Mx-JE-aMi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AkP-nr-7YI"/>
-                            <constraint firstItem="Egl-2f-80j" firstAttribute="leading" secondItem="4Mx-JE-aMi" secondAttribute="leading" id="CFX-Z9-1vp"/>
-                            <constraint firstItem="4Mx-JE-aMi" firstAttribute="trailing" secondItem="Egl-2f-80j" secondAttribute="trailing" id="DWP-re-8c6"/>
-                            <constraint firstItem="yjY-RA-ctX" firstAttribute="top" secondItem="4Mx-JE-aMi" secondAttribute="bottom" constant="23" id="H70-PC-vfp"/>
-                            <constraint firstItem="Egl-2f-80j" firstAttribute="top" secondItem="yjY-RA-ctX" secondAttribute="bottom" constant="8" symbolic="YES" id="O9Z-3P-cGV"/>
-                            <constraint firstItem="4Mx-JE-aMi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="77" id="gM9-lY-UbQ"/>
-                            <constraint firstItem="Egl-2f-80j" firstAttribute="centerX" secondItem="yjY-RA-ctX" secondAttribute="centerX" id="rrC-Us-hao"/>
+                            <constraint firstItem="U9j-gu-ahX" firstAttribute="centerX" secondItem="emd-1s-brY" secondAttribute="centerX" id="29j-5G-BG9"/>
+                            <constraint firstItem="HIl-8O-Cgc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3de-dk-uYm"/>
+                            <constraint firstItem="4Mx-JE-aMi" firstAttribute="top" secondItem="Egl-2f-80j" secondAttribute="bottom" constant="19" id="D9L-kB-TJM"/>
+                            <constraint firstItem="Egl-2f-80j" firstAttribute="leading" secondItem="4Mx-JE-aMi" secondAttribute="leading" id="E4B-jZ-NcM"/>
+                            <constraint firstItem="U9j-gu-ahX" firstAttribute="centerX" secondItem="4Mx-JE-aMi" secondAttribute="centerX" id="HnO-5g-b6x"/>
+                            <constraint firstItem="emd-1s-brY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="I68-kK-k7Q"/>
+                            <constraint firstItem="emd-1s-brY" firstAttribute="top" secondItem="U9j-gu-ahX" secondAttribute="bottom" constant="25" id="Kgs-ut-57y"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HIl-8O-Cgc" secondAttribute="bottom" constant="8" id="MUp-d7-4IP"/>
+                            <constraint firstItem="HIl-8O-Cgc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="OOr-Rk-IXQ"/>
+                            <constraint firstItem="U9j-gu-ahX" firstAttribute="top" secondItem="4Mx-JE-aMi" secondAttribute="bottom" constant="8" id="Oi0-hi-hjp"/>
+                            <constraint firstItem="emd-1s-brY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="TSz-uB-dCZ"/>
+                            <constraint firstItem="U9j-gu-ahX" firstAttribute="centerX" secondItem="yjY-RA-ctX" secondAttribute="centerX" id="WUY-t4-CXR"/>
+                            <constraint firstItem="Egl-2f-80j" firstAttribute="top" secondItem="yjY-RA-ctX" secondAttribute="bottom" constant="8" symbolic="YES" id="Xxe-K8-UAV"/>
+                            <constraint firstItem="yjY-RA-ctX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ebN-YX-R9s"/>
+                            <constraint firstItem="HIl-8O-Cgc" firstAttribute="top" secondItem="emd-1s-brY" secondAttribute="bottom" constant="8" symbolic="YES" id="seA-pg-jDG"/>
+                            <constraint firstItem="Egl-2f-80j" firstAttribute="trailing" secondItem="4Mx-JE-aMi" secondAttribute="trailing" id="wci-DC-q4G"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autocompleteTableView" destination="U9j-gu-ahX" id="dY0-0m-zkY"/>
                         <outlet property="languageLabel" destination="yjY-RA-ctX" id="yHB-Da-D4a"/>
+                        <outlet property="languagePickerView" destination="emd-1s-brY" id="ULn-DT-UDj"/>
+                        <outlet property="tableView" destination="HIl-8O-Cgc" id="8Qm-Gb-nGJ"/>
                         <outlet property="textField" destination="4Mx-JE-aMi" id="ElN-0p-Mzt"/>
                         <outlet property="translationLabel" destination="Egl-2f-80j" id="rtk-EO-Z36"/>
                     </connections>
