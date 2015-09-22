@@ -28,16 +28,42 @@ class ViewController: UIViewController, UITextFieldDelegate, HTTPRequestHandler 
         // Dispose of any resources that can be recreated.
     }
     
-    func HTTPRequestReceived(JSONData: AnyObject) {
+    func HTTPRequestReceived(URL: String, JSONData: AnyObject) {
         let parser = Parser(JSONData: JSONData)
-        let detections = parser.getDetections()
-        print(detections)
-        var text = ""
-        for detection in detections
+        if(URL == Constants.detectLanguageURL)
         {
-            text += detection["language"].description + "\n"
+            let detections = parser.getDetections()
+            print(detections)
+            var text = ""
+            for detection in detections
+            {
+                text += detection["language"].description + "\n"
+            }
+            if(detections.count > 0)
+            {
+                let language = Languages(rawValue: detections[0]["language"].description)
+                //print(language?.debugDescription)
+                self.languageLabel.text = language?.description
+                self.languageDetector.translate(self.textField.text!, sourceLanguage: detections[0]["language"].description, targetLanguage: "en")
+            }
+            else
+            {
+                self.languageLabel.text = "Language"
+                self.translationLabel.text = "Translation"
+            }
         }
-        self.languageLabel.text = text
+        else if (URL == Constants.translateURLGET )
+        {
+            let responses = parser.getResponses()
+            if(responses != nil && responses!.count > 0 )
+            {
+                self.translationLabel.text = responses![0]["translation"].description
+            }
+            else
+            {
+                self.translationLabel.text = "Translation"
+            }
+        }
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {

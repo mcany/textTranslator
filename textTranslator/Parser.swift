@@ -17,11 +17,17 @@ class Parser: NSObject {
         self.JSONData = JSONData
         self.json = JSON(self.JSONData)
         //                print(json["data"]["detections"][0]["language"])
-
+        
     }
     
     func getDetections() -> [JSON]
     {
         return json["data"]["detections"].array!
+    }
+    
+    
+    func getResponses() -> [JSON]?
+    {
+        return json["matches"].array
     }
 }

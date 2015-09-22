@@ -10,7 +10,9 @@ import UIKit
 
 class Constants: NSObject {
     
-    static var apiKey = "232d1d92686f4772de5712d1bb1ac3d4"
-    static var URL = "http://ws.detectlanguage.com/0.2/detect"
+    static var detectLanguageapiKey = "232d1d92686f4772de5712d1bb1ac3d4"
+    static var detectLanguageURL = "http://ws.detectlanguage.com/0.2/detect"
+    
+    static var translateURLGET = "http://api.mymemory.translated.net/get"
 
 }
