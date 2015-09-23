@@ -46,6 +46,8 @@ extension ViewController:HTTPRequestHandler{
         }
         else if (URL == Constants.translateURLGET )
         {
+            self.similarWordsList = [String]()
+
             let matches = parser.getMatches()
             if(matches != nil && matches!.count > 0 )
             {
